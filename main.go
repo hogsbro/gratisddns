@@ -7,6 +7,7 @@ import (
 	"log"
 	"net/http"
 	"time"
+	"runtime"
 )
 
 func updateDns(username, password, domain, host string) {
@@ -38,6 +39,9 @@ func updateDns(username, password, domain, host string) {
 func main() {
 	var username, password, domain, host string
 	var schedule int
+
+	runtime.GOMAXPROCS(1)
+	log.SetFlags(0)
 
 	flag.StringVar(&username, "u", "", "Your gratisdns `username`")
 	flag.StringVar(&password, "p", "", "Your gratisdns ddns `password`")
