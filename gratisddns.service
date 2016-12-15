@@ -1,0 +1,17 @@
+[Unit]
+Description=GratisDNS DDNS Updater
+Documentation=https://github.com/hogsbro/gratisddns/
+After=networking.service
+Requires=networking.service
+
+[Service]
+Environment=INTERVAL=1
+Environment=USERNAME=
+Environment=PASSWORD=
+Environment=DOMAIN=
+Environment=HOSTNAME=
+
+ExecStart=/usr/local/bin/gratisddns -u $USERNAME -p $PASSWORD -d $DOMAIN -h $HOSTNAME -s $INTERVAL
+
+[Install]
+WantedBy=multi-user.target
